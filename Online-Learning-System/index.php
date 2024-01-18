@@ -117,7 +117,7 @@
 				<h3 class="modal-title">Login</h3>
 			</div>
 			<div class="modal-body">
-				<form class="form-horizontal" action="login.php">   
+				<form class="form-horizontal" action="Login.php">   
 					<div class="form-group">     
 						<label class="control-label col-sm-2" for="email">Username:</label>     
 						<div class="col-sm-10">       
