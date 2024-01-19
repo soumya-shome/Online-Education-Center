@@ -50,7 +50,13 @@ header("Refresh:0,URL=stuHome.php");
 		</div>
 		<div class="collapse navbar-collapse" id="myAHome"> 
 			<ul class="nav navbar-nav">
-				<li class="active"><a href="index.php">Home</a></li>				
+				<li class="active"><a href="index.php">Home</a></li>
+				<li><a href="#">Attendance Log</a></li>
+				<li><a href="Register.php">Register</a></li>
+				<li><a href="Information.php">Information</a></li>
+				<li><a href="#">Settings</a></li>
+				<li><a href="#">Check Attendance</a></li>
+			</ul>				
 			</ul>
 			<ul class="nav navbar-nav navbar-right">
 				

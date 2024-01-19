@@ -28,8 +28,8 @@
 			
 			<ul class="nav navbar-nav">		
 				
-				<li class=""><a href="stuHome.php">Home</a></li>
-				<li ><a href="s_profile.php">Profile</a></li>
+				<li class="active"><a href="stuHome.php">Home</a></li>
+				<li ><a href="">Profile</a></li>
 				<li class="dropdown" ><a href="#" class="dropdown-toggle" data-toggle="dropdown">Exam Center<span class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<li class="dropdown-header">Exams</li>

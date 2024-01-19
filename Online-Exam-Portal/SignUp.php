@@ -24,7 +24,7 @@
 			<ul class="nav navbar-nav">
 				
 				<li class="active"><a href="index.php">Home</a></li>
-			
+				<li class="#"><a href="sche.php">Check Attendance</a></li>
 				
 			</ul>
 			<ul class="nav navbar-nav navbar-right">

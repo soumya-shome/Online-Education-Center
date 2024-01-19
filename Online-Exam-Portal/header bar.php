@@ -25,15 +25,16 @@
 			<a class="navbar-brand" href="#">Centre</a>
 		</div>
 		<div class="collapse navbar-collapse" id="myAHome">
-			
 			<ul class="nav navbar-nav">		
-				
-				<li class=""><a href="adminHome.php">Home</a></li>
+				<li class="active"><a href="adminHome.php">Home</a></li>
+				<li class="active"><a href="adminHome.php">Home</a></li>
+				<li class="#"><a href="Profile.php">Profile</a></li>
 				<li class="dropdown" ><a href="#" class="dropdown-toggle" data-toggle="dropdown">Question Papers<span class="caret"></span></a>
 					<ul class="dropdown-menu">
 						<li class="dropdown-header">Question Paper</li>
 						<li ><a href="viewQp.php">View Question Paper</a></li>
 						<li ><a href="createP.php">Add Question Set</a></li>
+						<li ><a href="viewCourse2.php">Add Questions</a></li>
 					</ul>
 				</li>
 				<li class="dropdown" ><a href="#" class="dropdown-toggle" data-toggle="dropdown">Exam Center<span class="caret"></span></a>
@@ -42,8 +43,18 @@
 						<li ><a href="e_slot.php">Exam Slots</a></li>
 						<li ><a href="sche.php">Schedule Exam</a></li>
 						<li ><a href="e_status.php">Exam Status</a></li>
-						<li><a href="u_mark.php">Upload Marks</a></li>
 						<li ><a href="Result.php">Result</a></li>
+					</ul>
+				</li>
+				<li class="dropdown" ><a href="#" class="dropdown-toggle" data-toggle="dropdown">Attendance Register<span class="caret"></span></a>
+					<ul class="dropdown-menu">
+						<li class="dropdown-header">Register</li>
+						<li ><a href="#">-</a></li>
+						
+						<li class="divider"></li>
+						<li class="dropdown-header">Fees</li>
+						<li ><a href="#">View</a></li>
+						<li ><a href="#">Submit</a></li>
 					</ul>
 				</li>
 				<li class="dropdown" ><a href="#" class="dropdown-toggle" data-toggle="dropdown">Students<span class="caret"></span></a>
@@ -59,7 +70,7 @@
 						<li ><a href="viewCou.php">View Course Details</a></li>
 						<li class="divider"></li>
 						<li><a href="st_course.php">Register for Course</a></li>
-						
+						<li><a href="st_c_update.php">Update Student's Course Status</a></li>
 						<li><a href="viewstcou.php">View Student's Course</a></li>
 					</ul>
 				</li>
