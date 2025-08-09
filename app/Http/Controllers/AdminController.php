@@ -31,8 +31,8 @@ class AdminController extends Controller
         $totalExams = Exam::count();
         $totalResults = Result::count();
         
-        $recentExams = Exam::with(['student', 'course'])->latest()->take(5)->get();
-        $recentResults = Result::with(['student', 'exam.course'])->latest()->take(5)->get();
+        $recentExams = Exam::with(['student', 'course'])->take(5)->get();
+        $recentResults = Result::with(['student', 'exam.course'])->take(5)->get();
 
         return view('admin.dashboard', compact(
             'totalStudents', 
@@ -90,8 +90,7 @@ class AdminController extends Controller
             'f_name' => $request->first_name,
             'l_name' => $request->last_name,
             'gender' => $request->gender,
-            'phone' => $request->phone,
-            'address' => $request->address,
+            'ph_no' => $request->phone,
         ]);
 
         return redirect()->route('admin.students.show', $id)
@@ -132,7 +131,6 @@ class AdminController extends Controller
             'name' => $request->name,
             'duration' => $request->duration,
             'description' => $request->description,
-            'created_by' => Auth::user()->email,
         ];
 
         if ($request->hasFile('file')) {
@@ -231,10 +229,9 @@ class AdminController extends Controller
             'p_set' => $request->paper_set_id,
             'e_date' => $request->exam_date,
             'e_slot' => $request->exam_slot,
-            'p_type' => PaperSet::find($request->paper_set_id)->p_type,
-            'activation_code' => strtoupper(Str::random(5)),
+            'p_type' => PaperSet::find($request->paper_set_id)->type,
+            'activation code' => strtoupper(Str::random(5)),
             'status' => 'PENDING',
-            'created_by' => Auth::user()->email,
         ];
 
         Exam::create($examData);
@@ -285,10 +282,8 @@ class AdminController extends Controller
         $paperSetData = [
             'p_id' => 'P' . str_pad(PaperSet::count() + 1, 4, '0', STR_PAD_LEFT),
             'c_id' => $request->course_id,
-            'p_type' => $request->paper_type,
-            'total_marks' => $request->total_marks,
-            'time_limit' => $request->time_limit,
-            'created_by' => Auth::user()->email,
+            'type' => $request->paper_type,
+            'status' => 'COMPLETE',
         ];
 
         $paperSet = PaperSet::create($paperSetData);
@@ -331,15 +326,14 @@ class AdminController extends Controller
         ]);
 
         $questionData = [
-            'q_id' => 'Q' . str_pad(Question::count() + 1, 4, '0', STR_PAD_LEFT),
             'p_id' => $paperSetId,
-            'question' => $request->question,
-            'option_a' => $request->option_a,
-            'option_b' => $request->option_b,
-            'option_c' => $request->option_c,
-            'option_d' => $request->option_d,
-            'correct_answer' => $request->correct_answer,
-            'marks' => $request->marks,
+            'q_no' => (Question::where('p_id', $paperSetId)->count() + 1),
+            'ques' => $request->question,
+            'op1' => $request->option_a,
+            'op2' => $request->option_b,
+            'op3' => $request->option_c,
+            'op4' => $request->option_d,
+            'c_opt' => $request->correct_answer,
         ];
 
         Question::create($questionData);

@@ -17,10 +17,13 @@ class OfflinePaper extends Model
 
     protected $fillable = [
         'p_id',
+        'c_id',
         'file',
-        'total_marks',
-        'time_limit',
+        'tot_marks',
+        'time',
     ];
+
+    public $timestamps = false;
 
     /**
      * Get the paper set for this offline paper.

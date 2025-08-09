@@ -26,7 +26,7 @@ class StudentController extends Controller
         $student = Auth::user()->student;
         $enrolledCourses = $student->courses()->with('course')->get();
         $upcomingExams = $student->exams()->where('status', 'PENDING')->with('course')->get();
-        $recentResults = $student->results()->with('exam.course')->latest()->take(5)->get();
+        $recentResults = $student->results()->with('exam.course')->take(5)->get();
 
         return view('student.dashboard', compact('student', 'enrolledCourses', 'upcomingExams', 'recentResults'));
     }
@@ -57,8 +57,7 @@ class StudentController extends Controller
         $student->update([
             'f_name' => $request->first_name,
             'l_name' => $request->last_name,
-            'phone' => $request->phone,
-            'address' => $request->address,
+            'ph_no' => $request->phone,
         ]);
 
         return redirect()->route('student.profile')
@@ -95,8 +94,8 @@ class StudentController extends Controller
 
         $student->courses()->create([
             'c_id' => $courseId,
-            'enrolled_at' => now(),
-            'status' => 'ACTIVE',
+            'd_o_c' => date('d-m-Y'),
+            'status' => 'EXAM',
         ]);
 
         return redirect()->route('student.courses')
@@ -171,11 +170,14 @@ class StudentController extends Controller
         Result::create([
             'e_id' => $examId,
             'st_id' => $student->s_id,
-            'marks_obtained' => $obtainedMarks,
-            'total_marks' => $totalMarks,
+            'tot_q' => count($exam->paperSet->questions),
+            'tot_a_q' => count($answers),
+            'tot_w_q' => count($exam->paperSet->questions) - count(array_filter($answers)),
+            'tot_r_q' => count(array_filter($answers)),
+            'marks' => $obtainedMarks,
+            'n_marks' => $totalMarks - $obtainedMarks,
             'percentage' => $percentage,
             'status' => $status,
-            'submitted_at' => now(),
         ]);
 
         // Update exam status

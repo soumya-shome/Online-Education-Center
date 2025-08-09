@@ -12,16 +12,22 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    protected $table = 'profile';
+    protected $primaryKey = 'st_id';
+    public $incrementing = false;
+    protected $keyType = 'string';
+    public $timestamps = false;
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
-        'email',
+        'st_id',
         'password',
-        'user_type',
+        'type',
+        'email',
     ];
 
     /**
@@ -49,7 +55,7 @@ class User extends Authenticatable
      */
     public function student()
     {
-        return $this->hasOne(Student::class, 's_id', 'email');
+        return $this->hasOne(Student::class, 's_id', 'st_id');
     }
 
     /**
@@ -57,7 +63,7 @@ class User extends Authenticatable
      */
     public function admin()
     {
-        return $this->hasOne(Admin::class, 'a_id', 'email');
+        return $this->hasOne(Admin::class, 'a_id', 'st_id');
     }
 
     /**
@@ -65,7 +71,7 @@ class User extends Authenticatable
      */
     public function isAdmin()
     {
-        return $this->user_type === 'ADMIN';
+        return $this->type === 'ADMIN';
     }
 
     /**
@@ -73,6 +79,19 @@ class User extends Authenticatable
      */
     public function isStudent()
     {
-        return $this->user_type === 'STUDENT';
+        return $this->type === 'STUDENT';
+    }
+
+    /**
+     * Get the name for the user
+     */
+    public function getNameAttribute()
+    {
+        if ($this->isStudent()) {
+            return $this->student ? $this->student->f_name . ' ' . $this->student->l_name : $this->st_id;
+        } elseif ($this->isAdmin()) {
+            return $this->admin ? $this->admin->name : $this->st_id;
+        }
+        return $this->st_id;
     }
 } 

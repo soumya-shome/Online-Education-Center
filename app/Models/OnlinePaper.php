@@ -17,10 +17,15 @@ class OnlinePaper extends Model
 
     protected $fillable = [
         'p_id',
+        'c_id',
         'time',
-        'total_questions',
-        'passing_marks',
+        'no_of_q',
+        'ne_marks',
+        'tot_marks',
+        'p_q_marks',
     ];
+
+    public $timestamps = false;
 
     /**
      * Get the paper set for this online paper.

@@ -16,11 +16,11 @@ class PaperSet extends Model
     protected $fillable = [
         'p_id',
         'c_id',
-        'p_type',
-        'total_marks',
-        'time_limit',
-        'created_by',
+        'type',
+        'status',
     ];
+
+    public $timestamps = false;
 
     /**
      * Get the course for this paper set.
@@ -67,7 +67,8 @@ class PaperSet extends Model
      */
     public function admin()
     {
-        return $this->belongsTo(Admin::class, 'created_by', 'a_id');
+        // Since there's no created_by column, we'll return null for now
+        return null;
     }
 
     /**
@@ -75,7 +76,7 @@ class PaperSet extends Model
      */
     public function isOnline()
     {
-        return $this->p_type === 'ONLINE';
+        return $this->type === 'ONLINE';
     }
 
     /**
@@ -83,6 +84,6 @@ class PaperSet extends Model
      */
     public function isOffline()
     {
-        return $this->p_type === 'OFFLINE';
+        return $this->type === 'OFFLINE';
     }
 } 

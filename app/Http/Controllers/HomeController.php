@@ -13,10 +13,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $courses = Course::latest()->take(6)->get();
+        $courses = Course::take(6)->get();
         $upcomingExams = Exam::where('status', 'PENDING')
             ->with(['course', 'student'])
-            ->latest()
             ->take(5)
             ->get();
 

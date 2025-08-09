@@ -10,16 +10,17 @@ class Question extends Model
     use HasFactory;
 
     protected $fillable = [
-        'q_id',
         'p_id',
-        'question',
-        'option_a',
-        'option_b',
-        'option_c',
-        'option_d',
-        'correct_answer',
-        'marks',
+        'q_no',
+        'ques',
+        'op1',
+        'op2',
+        'op3',
+        'op4',
+        'c_opt',
     ];
+
+    public $timestamps = false;
 
     /**
      * Get the paper set for this question.
@@ -34,7 +35,7 @@ class Question extends Model
      */
     public function isCorrectAnswer($answer)
     {
-        return strtoupper($answer) === strtoupper($this->correct_answer);
+        return $answer == $this->c_opt;
     }
 
     /**
@@ -43,10 +44,27 @@ class Question extends Model
     public function getOptionsAttribute()
     {
         return [
-            'A' => $this->option_a,
-            'B' => $this->option_b,
-            'C' => $this->option_c,
-            'D' => $this->option_d,
+            '1' => $this->op1,
+            '2' => $this->op2,
+            '3' => $this->op3,
+            '4' => $this->op4,
         ];
+    }
+
+    /**
+     * Get the question text.
+     */
+    public function getQuestionAttribute()
+    {
+        return $this->ques;
+    }
+
+    /**
+     * Get the marks for this question.
+     */
+    public function getMarksAttribute()
+    {
+        // Default marks since there's no marks column in the database
+        return 1;
     }
 } 

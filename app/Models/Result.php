@@ -9,19 +9,24 @@ class Result extends Model
 {
     use HasFactory;
 
+    public $timestamps = false;
+
     protected $fillable = [
-        'r_id',
         'e_id',
         'st_id',
-        'marks_obtained',
-        'total_marks',
+        'tot_q',
+        'tot_a_q',
+        'tot_w_q',
+        'tot_r_q',
+        'marks',
+        'n_marks',
+        'grade',
         'percentage',
         'status',
-        'submitted_at',
     ];
 
     protected $casts = [
-        'submitted_at' => 'datetime',
+        'percentage' => 'float',
     ];
 
     /**

@@ -24,7 +24,7 @@ class Admin extends Model
      */
     public function user()
     {
-        return $this->belongsTo(User::class, 'a_id', 'email');
+        return $this->belongsTo(User::class, 'a_id', 'st_id');
     }
 
     /**
@@ -32,7 +32,8 @@ class Admin extends Model
      */
     public function courses()
     {
-        return $this->hasMany(Course::class, 'created_by', 'a_id');
+        // Since there's no created_by column, we'll return empty collection
+        return collect();
     }
 
     /**
@@ -40,6 +41,9 @@ class Admin extends Model
      */
     public function exams()
     {
-        return $this->hasMany(Exam::class, 'created_by', 'a_id');
+        // Since there's no created_by column, we'll return empty collection
+        return collect();
     }
+
+    public $timestamps = false;
 } 

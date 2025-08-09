@@ -12,6 +12,7 @@ class Student extends Model
     protected $primaryKey = 's_id';
     public $incrementing = false;
     protected $keyType = 'string';
+    public $timestamps = false;
 
     protected $fillable = [
         's_id',
@@ -19,8 +20,9 @@ class Student extends Model
         'l_name',
         'gender',
         'email',
-        'phone',
-        'address',
+        'ph_no',
+        'ph_no_2',
+        'd_o_a',
     ];
 
     /**
@@ -28,7 +30,7 @@ class Student extends Model
      */
     public function user()
     {
-        return $this->belongsTo(User::class, 's_id', 'email');
+        return $this->belongsTo(User::class, 's_id', 'st_id');
     }
 
     /**

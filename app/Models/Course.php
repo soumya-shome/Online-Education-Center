@@ -12,6 +12,7 @@ class Course extends Model
     protected $primaryKey = 'c_id';
     public $incrementing = false;
     protected $keyType = 'string';
+    public $timestamps = false;
 
     protected $fillable = [
         'c_id',
@@ -19,7 +20,6 @@ class Course extends Model
         'duration',
         'description',
         'file',
-        'created_by',
     ];
 
     /**
@@ -51,7 +51,8 @@ class Course extends Model
      */
     public function admin()
     {
-        return $this->belongsTo(Admin::class, 'created_by', 'a_id');
+        // Since there's no created_by column, we'll return null for now
+        return null;
     }
 
     /**

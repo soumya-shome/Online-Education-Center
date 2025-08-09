@@ -12,6 +12,7 @@ class Exam extends Model
     protected $primaryKey = 'e_id';
     public $incrementing = false;
     protected $keyType = 'string';
+    public $timestamps = false;
 
     protected $fillable = [
         'e_id',
@@ -21,9 +22,8 @@ class Exam extends Model
         'c_id',
         'p_type',
         'p_set',
-        'activation_code',
+        'activation code',
         'status',
-        'created_by',
     ];
 
     /**
@@ -63,7 +63,8 @@ class Exam extends Model
      */
     public function admin()
     {
-        return $this->belongsTo(Admin::class, 'created_by', 'a_id');
+        // Since there's no created_by column, we'll return null for now
+        return null;
     }
 
     /**

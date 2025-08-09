@@ -14,13 +14,11 @@ class StudentCourse extends Model
     protected $fillable = [
         'st_id',
         'c_id',
-        'enrolled_at',
+        'd_o_c',
         'status',
     ];
 
-    protected $casts = [
-        'enrolled_at' => 'datetime',
-    ];
+    public $timestamps = false;
 
     /**
      * Get the student for this enrollment.
@@ -43,7 +41,7 @@ class StudentCourse extends Model
      */
     public function isActive()
     {
-        return $this->status === 'ACTIVE';
+        return $this->status === 'EXAM';
     }
 
     /**
